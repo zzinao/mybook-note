@@ -4,15 +4,21 @@ import styles from "./Signin.module.css";
 import { click } from "@testing-library/user-event/dist/click";
 import { LoginReqType } from "../types";
 
-
-interface SigninProps{
-login: (reqData: LoginReqType) => void;
+interface SigninProps {
+  login: (reqData: LoginReqType) => void;
 }
 
+const Signin: React.FC<SigninProps> = ({ login }) => {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
-const Signin : React.FC<SigninProps> =({login}) => {    
-const emailRef =  useRef<Input>(null);
-const passwordRef = useRef<Input>(null);
+  console.log(emailRef);
+
+  function click() {
+    // const email = emailRef.current?.state.value;
+    // const password = passwordRef.current?.state.value;
+    // login({ email, password });
+  }
 
   return (
     <Row align="middle" className={styles.signin_row}>
@@ -66,13 +72,6 @@ const passwordRef = useRef<Input>(null);
       </Col>
     </Row>
   );
-  
-  fucntion click(){
-    const email = emailRef.current!.state.value;
-    const password = passwordRef.current!.state.value;
-
-    login({email, password})
-  }
 };
 
-export default Signin
+export default Signin;

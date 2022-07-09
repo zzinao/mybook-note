@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Edit from "./pages/Edit";
 import Detail from "./pages/Detail";
@@ -12,17 +12,11 @@ import { ConnectedRouter } from "connected-react-router";
 import history from "./history";
 
 //connectedrouter 오류
-interface AppProps {
-  history: History;
-}
 
-function App({ history }: AppProps) {
-  const props = {
-    history: history,
-  };
+function App() {
   return (
     <ErrorBoundary FallbackComponent={Error}>
-      <ConnectedRouter {...props}>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/edit/:id" element={<Edit />} />
@@ -31,7 +25,7 @@ function App({ history }: AppProps) {
           <Route path="/add" element={<Add />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </ConnectedRouter>
+      </BrowserRouter>
     </ErrorBoundary>
   );
 }
